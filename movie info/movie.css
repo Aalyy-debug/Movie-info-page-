@@ -1,0 +1,96 @@
+:root{
+  --bg:#0b0b10;
+  --card:#0f1014;
+  --muted:#bfc2ca;
+  --accent:#e6b45a; /* cinematic warm gold */
+  --glass: rgba(255,255,255,0.03);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: linear-gradient(180deg,#050507 0%, #0b0b10 100%);
+  color: #e7e7ea;
+  -webkit-font-smoothing:antialiased;
+}
+.container{max-width:1100px;margin:0 auto;padding:1rem}
+
+/* Header */
+.site-header{position:sticky;top:0;background:linear-gradient(180deg, rgba(0,0,0,0.6), transparent);backdrop-filter: blur(4px);z-index:10}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:0.8rem 0}
+.movie-title{font-family: 'Cinzel', serif;margin:0;font-size:1.4rem;letter-spacing:2px}
+.meta{color:var(--muted);font-size:0.9rem;margin-top:4px}
+.watch-btn{background:var(--accent);color:#111;padding:0.5rem 0.9rem;border-radius:8px;text-decoration:none;font-weight:600}
+
+/* Banner */
+.banner{position:relative;padding:4rem 0;background-size:cover;background-position:center;min-height:340px;display:flex;align-items:center}
+.banner .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(3,3,3,0.5), rgba(3,3,3,0.8));}
+.banner-inner{position:relative;display:flex;gap:1.2rem;align-items:center}
+.poster{width:160px;border-radius:12px;box-shadow: 0 10px 30px rgba(0,0,0,0.7);border:4px solid rgba(0,0,0,0.35)}
+.banner-text h2{font-family:'Cinzel', serif;margin:0;font-size:2rem;letter-spacing:1px}
+.banner-text .tag{color:var(--muted);margin-top:8px}
+.meta-row{color:var(--muted);margin-top:10px}
+
+/* Main content */
+.main-content{display:grid;grid-template-columns: 2fr 1fr;gap:1.2rem;padding:2rem 0}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:1rem;border-radius:14px;box-shadow: 0 12px 30px rgba(2,2,6,0.7)}
+
+.synopsis{grid-column:1 / -1}
+
+/* Cast grid */
+.cast-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
+.cast-member{background:var(--glass);border-radius:12px;padding:0.6rem;text-align:center}
+.cast-member img{width:100%;height:200px;object-fit:cover;border-radius:8px}
+.cast-member figcaption{margin-top:0.6rem;color:var(--muted)}
+
+/* Reviews */
+.reviews-wrap{display:flex;flex-direction:column;gap:0.8rem;max-height:18rem;overflow:auto;padding-right:0.4rem}
+.review{background:rgba(255,255,255,0.02);padding:0.8rem;border-radius:10px}
+.review-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.4rem}
+.review h4{margin:0}
+
+/* CSS-only star rating (display only) */
+.stars{
+  --star-size: 1.05rem;
+  --percent: calc(var(--rating) / 5 * 100%);
+  display:inline-block;
+  font-size:var(--star-size);
+  line-height:1;
+  position:relative;
+  width:calc(var(--star-size) * 5);
+  height:var(--star-size);
+  background: linear-gradient(90deg, var(--accent) var(--percent), rgba(255,255,255,0.12) var(--percent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.stars::before{
+  content: '★★★★★';
+  position:absolute;left:0;top:0;width:100%;height:100%;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(90deg, var(--accent) var(--percent), rgba(255,255,255,0.12) var(--percent));
+  -webkit-background-clip: text;background-clip:text;
+}
+.stars::after{content:''}
+
+/* Where to watch */
+.platforms{list-style:none;padding:0;margin:0}
+.platforms li{padding:0.4rem 0;color:var(--muted)}
+
+/* Footer */
+.site-footer{padding:1.2rem 0;margin-top:1.6rem;border-top:1px solid rgba(255,255,255,0.03)}
+.footer-inner{display:flex;align-items:center;justify-content:space-between}
+.footer-inner img{height:36px;filter:grayscale(1) contrast(0.8)}
+
+/* Responsive */
+@media (max-width:900px){
+  .main-content{grid-template-columns:1fr;}
+  .cast-grid{grid-template-columns:repeat(2,1fr)}
+  .banner-inner{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:480px){
+  .cast-grid{grid-template-columns:1fr}
+  .poster{width:120px}
+  .movie-title{font-size:1.1rem}
+}
